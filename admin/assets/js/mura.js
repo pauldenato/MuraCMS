@@ -7642,6 +7642,7 @@ return /******/ (function(modules) { // webpackBootstrap
             var self=this;
 
 			return new Promise(function(resolve,reject){
+				var url = Mura.apiEndpoint + self.get('entityname') + '/new';
 				params=Mura.extend(
 					{
 						entityname:self.get('entityname'),
@@ -7651,9 +7652,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					},
 					params
 				);
-
-				Mura.get(params).then(function(item){
-					self.set(item.getAll());
+				Mura.get(url,params).then(function(item){
+					self.set(item.data);
 					if(typeof resolve == 'function'){
 						resolve(self);
 					}
